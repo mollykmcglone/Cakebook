@@ -1,12 +1,12 @@
-#show-contact {
+#show-bakery {
   display: none;
 }
 
-.contact {
+.bakery {
   cursor: pointer;
   color: #0088cc;
 }
 
-.contact:hover {
+.bakery:hover {
   text-decoration: underline;
 }

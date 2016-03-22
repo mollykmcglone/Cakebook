@@ -1,77 +1,83 @@
 //business logic
-function Contact(first, last) {
-  this.firstName = first;
-  this.lastName = last;
-  this.addresses = [];
+function Bakery(bakery, website) {
+  this.bakeryName = bakery;
+  this.website = website;
+  this.cakes = [];
 }
 
-function Address(street, city, state) {
-  this.street = street;
-  this.city = city;
-  this.state = state;
+function Cakes(name, erikFlavor, erikTexture, mollyFlavor, mollyTexture) {
+  this.name = name;
+  this.erikFlavor = erikFlavor;
+  this.erikTexture = erikTexture;
+  this.mollyFlavor = mollyFlavor;
+  this.mollyTexture= mollyTexture;
 }
 
-Contact.prototype.fullName = function() {
-  return this.firstName + " " + this.lastName;
-}
-
-Address.prototype.fullAddress = function() {
-  return this.street + ", " + this.city + ", " + this.state;
+Cakes.prototype.summary = function() {
+  return this.name + ": Erik ranks " + this.erikFlavor + "/" + this.erikTexture + "and Molly ranks " this.mollyFlavor + "/" + this.mollyTexture;
 }
 
 function resetFields() {
-    $("input#new-first-name").val("");
-    $("input#new-last-name").val("");
-    $("input.new-street").val("");
-    $("input.new-city").val("");
-    $("input.new-state").val("");
+    $("input#new-bakery-name").val("");
+    $("input#new-bakery-website").val("");
+    $("input.new-cake-name").val("");
+    $("input.Erik-flavor-score").val("");
+    $("input.Erik-texture-score").val("");
+    $("input.Molly-flavor-score").val("");
+    $("input.Molly-texture-score").val("");
 }
 
 // user interface logic
 $(document).ready(function() {
-  
-  $("#add-address").click(function() {
-    $("#new-addresses").append('<div class="new-address">' +
+
+  $("#add-cake").click(function() {
+    $("#new-cakes").append('<div class="new-cake">' +
                                  '<div class="form-group">' +
-                                   '<label for="new-street">Street</label>' +
-                                   '<input type="text" class="form-control new-street">' +
+                                   '<label for="new-cake">Cake</label>' +
+                                   '<input type="text" class="form-control new-cake">' +
                                  '</div>' +
                                  '<div class="form-group">' +
-                                   '<label for="new-city">City</label>' +
-                                   '<input type="text" class="form-control new-city">' +
+                                   '<label for="Erik-flavor-score">Erik Flavor Score</label>' +
+                                   '<input type="text" class="form-control Erik-flavor-score">' +
                                  '</div>' +
                                  '<div class="form-group">' +
-                                   '<label for="new-state">State</label>' +
-                                   '<input type="text" class="form-control new-state">' +
+                                   '<label for="Erik Texture Score">Erik Texture Score</label>' +
+                                   '<input type="text" class="form-control Erik-texture-score">' +
+                                 '</div>' +
+                                 '<div class="form-group">' +
+                                   '<label for="Molly-flavor-score">Molly Flavor Score</label>' +
+                                   '<input type="text" class="form-control Molly-flavor-score">' +
+                                 '</div>' +
+                                 '<div class="form-group">' +
+                                   '<label for="Molly Texture Score">Molly Texture Score</label>' +
+                                   '<input type="text" class="form-control Molly-texture-score">' +
                                  '</div>' +
                                '</div>');
   });
 
-  $("form#new-contact").submit(function(event) {
+  $("form#new-bakery").submit(function(event) {
     event.preventDefault();
 
-    var inputtedFirstName = $("input#new-first-name").val();
-    var inputtedLastName = $("input#new-last-name").val();
-    var newContact = new Contact(inputtedFirstName, inputtedLastName);
+    var inputtedBakeryName = $("input#new-bakery-name").val();
+    var inputtedBakeryWebsite = $("input#new-bakery-website").val();
 
-    $(".new-address").each(function() {
-      var inputtedStreet = $(this).find("input.new-street").val();
-      var inputtedCity = $(this).find("input.new-city").val();
-      var inputtedState = $(this).find("input.new-state").val();
-      var newAddress = new Address(inputtedStreet, inputtedCity, inputtedState)
-      newContact.addresses.push(newAddress)
+    $(".new-cake").each(function() {
+      var inputtedCake = $(this).find("input.new-cake").val();
+      var inputtedErikFlavorScore = $(this).find("input.Erik-flavor-score").val();
+      var inputtedErikTextureScore = $(this).find("input.Erik-texture-score").val();
+      var inputtedMollyFlavorScore = $(this).find("input.Molly-flavor-score").val();
+      var inputtedMollyTextureScore = $(this).find("input.Molly-texture-score").val();
     });
 
-    $("ul#contacts").append("<li><span class='contact'>" + newContact.fullName() + "</span></li>");
+    $("ul#cakes").append("<li><span class='cake'>" + newBakery.bakeryName() + "</span></li>");
 
-    $(".contact").last().click(function() {
-      $("#show-contact").show();
-      $("#show-contact h2").text(newContact.fullName());
-      $(".first-name").text(newContact.firstName);
-      $(".last-name").text(newContact.lastName);
-      $("ul#addresses").text("");
-      newContact.addresses.forEach(function(address) {
-        $("ul#addresses").append("<li>" + address.fullAddress() + "</li>");
+    $(".bakery").last().click(function() {
+      $("#show-cakes").show();
+      $("#show-cakes h2").text(newBakery.bakeryName());
+      $(".last-").text(newBakery.website);
+      $("ul#cakes").text("");
+      newBakery.cakes.forEach(function(cake) {
+        $("ul#cakes").append("<li>" + cakes.cake() + "</li>");
       });
     });
 
